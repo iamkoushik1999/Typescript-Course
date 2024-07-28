@@ -7,7 +7,7 @@ export interface ITeacher extends Document {
   password: string;
   phoneNumber: string;
   gender: string;
-  joiningDate: string;
+  joiningDate: Date;
   designation: string;
   department: string;
   education: string;

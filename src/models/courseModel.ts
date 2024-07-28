@@ -4,7 +4,7 @@ import { ITeacher } from './teacherModel';
 export interface ICourse extends Document {
   name: string;
   code: string;
-  startDate: string;
+  startDate: Date;
   duration: number;
   price: number;
   teacher: ITeacher['_id'];
