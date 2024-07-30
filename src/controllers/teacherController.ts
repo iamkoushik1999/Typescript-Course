@@ -57,3 +57,43 @@ export const getTeachers = async (req: Request, res: Response) => {
 
   res.status(200).json({ count: teacherCount, data: teachers });
 };
+
+// GET
+// Get One Teacher
+export const getTeacher = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const teacher = await teacherModel.findById(id);
+  if (!teacher) {
+    return res.status(404).json({ message: 'No teacher found' });
+  }
+
+  res.status(200).json({ data: teacher });
+};
+
+// PUT
+// Edit Teacher
+export const updateTeacher = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const newTeacher = await teacherModel.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+  if (!newTeacher) {
+    return res.status(404).json({ message: 'No teacher found' });
+  }
+
+  res
+    .status(200)
+    .json({ message: 'Teacher Details Updated', data: newTeacher });
+};
+
+// DELETE
+// Delete Teacher
+export const deleteTeacher = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const newTeacher = await teacherModel.findByIdAndDelete(id);
+  if (!newTeacher) {
+    return res.status(404).json({ message: 'No teacher found' });
+  }
+
+  res.status(200).json({ message: 'Teacher Data Deleted' });
+};
