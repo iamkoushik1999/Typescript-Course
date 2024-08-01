@@ -54,3 +54,41 @@ export const getCourses = async (req: Request, res: Response) => {
 
   res.status(200).json({ count: courseCount, data: courses });
 };
+
+// GET
+// Get One Course
+export const getCourse = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const course = await courseModel.findById(id);
+  if (!course) {
+    return res.status(404).json({ message: 'No course found' });
+  }
+
+  res.status(200).json({ data: course });
+};
+
+// PUT
+// Edit Course
+export const updateCourse = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const newCourse = await courseModel.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+  if (!newCourse) {
+    return res.status(404).json({ message: 'No course found' });
+  }
+
+  res.status(200).json({ message: 'Course Details Updated', data: newCourse });
+};
+
+// DELETE
+// Delete Course
+export const deleteCourse = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const newCourse = await courseModel.findByIdAndDelete(id);
+  if (!newCourse) {
+    return res.status(404).json({ message: 'No Course found' });
+  }
+
+  res.status(200).json({ message: 'Course Data Deleted' });
+};
