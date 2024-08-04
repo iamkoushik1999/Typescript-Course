@@ -9,6 +9,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware';
 // Import Routes
 import teacherRoutes from './routes/teacherRoutes';
 import courseRoutes from './routes/courseRoutes';
+import studentRoutes from './routes/studentRoutes';
 
 // APP
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/v1/teacher', teacherRoutes);
 app.use('/api/v1/course', courseRoutes);
+app.use('/api/v1/student', studentRoutes);
 
 // Error Middleware
 app.use(notFound);
